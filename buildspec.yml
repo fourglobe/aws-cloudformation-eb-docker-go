@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+       docker: 18
+       go: 1.3.5
+    commands:
+       - pip install --upgrade awscli
+  pre_build:
+    commands:
+       - go build -o main .
+       - go test
+  build:
+    commands:
+      - cp $USE_TEMPLATE_FILE_PATH .
+      - aws cloudformation package
+        --template-file template.yaml
+        --s3-bucket $S3_BUCKET
+        --output-template-file template-export.yaml
+  #post_build:
+    #commands:
+      # - command
+      # - command
+  #reports:
+    #enter-report-name-here:
+      #files:
+        # - location
+        # - location
+      #base-directory: location
+      #discard-paths: yes
+      #file-format: JunitXml | CucumberJson
+artifacts:
+  files:
+    - template-export.yaml
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
