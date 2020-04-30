@@ -19,3 +19,23 @@ docker rmi `docker images -q`
 ```
 rm -rf database && docker-compose restart db
 ```
+
+## Cloud Formation 
+
+parameter setting
+
+```json
+{
+  "ApplicationName":"USER APPLICATION NAME", 
+  "EnvironmentName":"UER ENV NAME(TEST, STAGING, PROD ,,, etc)",
+  "InstanceType":"インスタンスタイプ",
+  "KeyPairName":"EC2 Key Name",
+  "VpcId":"VPCID",
+  "SubnetId":"SUBNET ID LIST",
+  "ELBSubnetId":"ELB SUBNET ID",
+  "MinSize":"1",
+  "MaxSize":"2",
+  "Cooldown":"180"
+}
+
+```
