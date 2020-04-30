@@ -13,7 +13,7 @@ Parameters:
     Type: String 
   SubnetId:
     Type: String 
-Resources: 
+Resources:
   EBApplication:
     Type: AWS::ElasticBeanstalk::Application 
     Properties:
