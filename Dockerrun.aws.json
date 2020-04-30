@@ -15,7 +15,7 @@
       "Sid": "AllowPull",
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:ecr:us-east-2:account-id:015272024909/golang_docker_example"
+        "arn:aws:ecr:us-east-2:account-id:015272024909/golang_image_repository"
       ],
       "Action": [
         "ecr:GetAuthorizationToken",
