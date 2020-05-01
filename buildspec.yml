@@ -12,7 +12,7 @@ phases:
       - go test
   build:
     commands:
-      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o app main.go
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o app application.go
   post_build:
     commands:
       - cp $USE_TEMPLATE_FILE_PATH .
