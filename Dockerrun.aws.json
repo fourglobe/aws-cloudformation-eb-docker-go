@@ -1,23 +1,14 @@
 {
-  "AWSEBDockerrunVersion": 2,
-  "containerDefinitions": [
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository",
+    "Update": "true"
+  },
+  "Ports": [
     {
-      "name": "golang_eb_image",
-      "image": "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository:latest",
-      "essential": true,
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "containerPort": 8080
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-region": "ap-southeast-1",
-          "awslogs-group": "eb-docker"
-        }
-      }
+      "ContainerPort": "8080"
     }
-  ]
+  ],
+  "Logging": "/var/log/nginx",
+  "Entrypoint": "/app"
 }
