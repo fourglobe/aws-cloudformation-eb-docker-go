@@ -40,6 +40,7 @@ phases:
 artifacts:
   files:
     - template-export.yaml
+    - Dockerrun.aws.json
   #name: $(date +%Y-%m-%d)
   #discard-paths: yes
   #base-directory: location
