@@ -15,7 +15,7 @@
       "Sid": "AllowPull",
       "Effect": "Allow",
       "Resource": [
-        "arn:aws:ecr:ap-southeast-1:account-id:015272024909/golang_image_repository"
+        "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository"
       ],
       "Action": [
         "ecr:GetAuthorizationToken",
