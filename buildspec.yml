@@ -10,7 +10,7 @@ phases:
   pre_build:
     commands:
        - go test
-       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/app main.go
+       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/application main.go
   build:
     commands:
       - cp $USE_TEMPLATE_FILE_PATH .
