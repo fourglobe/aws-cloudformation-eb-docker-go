@@ -1,12 +1,16 @@
 {
-  "Image": {
-    "Name": "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository"
-  },
-  "Ports": [
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
     {
-      "ContainerPort": 8080,
-      "HostPort": 80
+      "name": "golang_image_repository",
+      "image": "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ]
     }
   ]
 }
-          
