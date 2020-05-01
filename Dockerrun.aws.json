@@ -1,31 +1,12 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
+  "Image": {
+    "Name": "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository"
+  },
+  "Ports": [
     {
-      "Sid": "AllowEbAuth",
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetAuthorizationToken"
-      ],
-      "Resource": [
-        "*"
-      ]
-    },
-    {
-      "Sid": "AllowPull",
-      "Effect": "Allow",
-      "Resource": [
-        "015272024909.dkr.ecr.ap-southeast-1.amazonaws.com/golang_image_repository"
-      ],
-      "Action": [
-        "ecr:GetAuthorizationToken",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:GetRepositoryPolicy",
-        "ecr:DescribeRepositories",
-        "ecr:ListImages",
-        "ecr:BatchGetImage"
-      ]
+      "ContainerPort": 8080,
+      "HostPort": 80
     }
   ]
 }
+          
