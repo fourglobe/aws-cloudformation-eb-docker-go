@@ -37,5 +37,3 @@ parameter setting
   "MaxSize":"2",
   "Cooldown":"180"
 }
-
-```

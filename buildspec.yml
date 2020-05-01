@@ -4,17 +4,14 @@ phases:
   install:
     runtime-versions:
        docker: 19
-       golang: 1.14
+       go: 1.14
     commands:
        - pip install --upgrade awscli
   pre_build:
     commands:
-      - go test
+       - go test
+       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/app main.go
   build:
-    commands:
-      # - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o application application.go
-      - go build -o bin/application application.go
-  post_build:
     commands:
       - cp $USE_TEMPLATE_FILE_PATH .
       - aws cloudformation package
@@ -23,6 +20,4 @@ phases:
         --output-template-file template-export.yaml
 artifacts:
   files:
-    - bin/*
     - template-export.yaml
-    - .ebextensions/**/*
