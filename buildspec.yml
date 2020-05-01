@@ -4,7 +4,7 @@ phases:
   install:
     runtime-versions:
        docker: 19
-       go: 1.14
+       golang: 1.14
     commands:
        - pip install --upgrade awscli
   pre_build:
