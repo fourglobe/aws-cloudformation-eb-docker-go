@@ -23,4 +23,6 @@ phases:
         --output-template-file template-export.yaml
 artifacts:
   files:
+    - bin/*
     - template-export.yaml
+    - .ebextensions/**/*
