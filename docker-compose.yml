@@ -26,9 +26,9 @@ services:
     image: uzpayment:latest
     tty: true
     build:
-      dockerfile: Dockerfile.Dev
+      dockerfile: Dockerfile
       context: .
     volumes:
       - ./:/app
     ports:
-      - 1323:1323
+      - 1323:8080

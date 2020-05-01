@@ -9,41 +9,17 @@ phases:
        - pip install --upgrade awscli
   pre_build:
     commands:
-      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o app main.go
-      # - go test
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - go test
   build:
     commands:
-      - docker build -t $IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER .
-      - docker tag $IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER      
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o app main.go
   post_build:
     commands:
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
       - cp $USE_TEMPLATE_FILE_PATH .
       - aws cloudformation package
         --template-file template.yaml
         --s3-bucket $S3_BUCKET
         --output-template-file template-export.yaml
-  
-  # TUKAWANAI!!
-  # pre_build:
-  #   commands:
-  #      - go build -o main .
-  #      - go test
-  # build:
-  #   commands:
-  #     - cp $USE_TEMPLATE_FILE_PATH .
-  #     - aws cloudformation package
-  #       --template-file template.yaml
-  #       --s3-bucket $S3_BUCKET
-  #       --output-template-file template-export.yaml
 artifacts:
   files:
     - template-export.yaml
-    - Dockerrun.aws.json
-  #name: $(date +%Y-%m-%d)
-  #discard-paths: yes
-  #base-directory: location
-#cache:
-  #paths:
-    # - paths

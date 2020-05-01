@@ -30,7 +30,7 @@ Resources:
     Type: AWS::ElasticBeanstalk::ApplicationVersion 
     Properties: 
       ApplicationName: !Ref 'EBApplication' 
-      SourceBundle: '.' 
+      SourceBundle: './app' 
   EBConfigurationTemplate: 
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate 
     Properties: 
@@ -43,7 +43,8 @@ Resources:
         OptionName: SystemType 
         Value: enhanced
       # see: https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html
-      SolutionStackName: '64bit Amazon Linux 2 v3.0.0 running Docker'
+      # SolutionStackName: '64bit Amazon Linux 2 v3.0.0 running Docker'
+      SolutionStackName: '64bit Amazon Linux 2 v3.0.0 running Go 1.14.2'
   EBEnvironment: 
     Type: AWS::ElasticBeanstalk::Environment 
     Properties: 
