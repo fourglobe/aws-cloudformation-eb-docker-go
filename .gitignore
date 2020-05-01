@@ -3,5 +3,5 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-bin/application
+bin/
 .DS_Store

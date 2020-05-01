@@ -14,5 +14,5 @@ func main() {
 			"health": "ok",
 		})
 	})
-	r.Run()
+	r.Run("5000")
 }
