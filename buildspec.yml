@@ -10,13 +10,12 @@ phases:
   pre_build:
     commands:
        - go test
-      #  - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/application main.go
-       - go build -o bin/application main.go
+       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/application main.go
   build:
     commands:
-      - mkdir deploy
-      - cp $USE_TEMPLATE_FILE_PATH ./deploy
-      - cp -r ./bin ./deploy
+      # - mkdir deploy
+      # - cp $USE_TEMPLATE_FILE_PATH ./deploy
+      # - cp -r ./bin ./deploy
       - cd deploy
       - aws cloudformation package
         --template-file template.yaml
@@ -24,4 +23,4 @@ phases:
         --output-template-file template-export.yaml
 artifacts:
   files:
-    - ./deploy/template-export.yaml
+    - template-export.yaml
