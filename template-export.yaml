@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ApplicationName:
+    Type: String
+  EnvironmentName:
+    Type: String
+  InstanceType:
+    Type: String
+  KeyPairName:
+    Type: String
+  VpcId:
+    Type: String
+  SubnetId:
+    Type: String
+  ELBSubnetId:
+    Type: String
+  MinSize:
+    Type: String
+  MaxSize:
+    Type: String
+  Cooldown:
+    Type: String
+Resources:
+  EBApplication:
+    Type: AWS::ElasticBeanstalk::Application
+    Properties:
+      ApplicationName:
+        Ref: ApplicationName
+  EBApplicationVersion:
+    Type: AWS::ElasticBeanstalk::ApplicationVersion
+    Properties:
+      ApplicationName:
+        Ref: EBApplication
+      SourceBundle:
+        S3Bucket: golang-formation-artifacts
+        S3Key: 76cdb2bad9582d23c1f6f4d868218d6c
+  EBConfigurationTemplate:
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+    Properties:
+      ApplicationName:
+        Ref: EBApplication
+      OptionSettings:
+      - Namespace: aws:elasticbeanstalk:environment
+        OptionName: EnvironmentType
+        Value: LoadBalanced
+      - Namespace: aws:elasticbeanstalk:healthreporting:system
+        OptionName: SystemType
+        Value: enhanced
+      SolutionStackName: Go 1 running on 64bit Amazon Linux/2.15.1
+  EBEnvironment:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      ApplicationName:
+        Ref: EBApplication
+      EnvironmentName:
+        Ref: EnvironmentName
+      TemplateName:
+        Ref: EBConfigurationTemplate
+      VersionLabel:
+        Ref: EBApplicationVersion
+      OptionSettings:
+      - Namespace: aws:autoscaling:launchconfiguration
+        OptionName: IamInstanceProfile
+        Value: aws-elasticbeanstalk-ec2-role
+      - Namespace: aws:autoscaling:launchconfiguration
+        OptionName: InstanceType
+        Value:
+          Ref: InstanceType
+      - Namespace: aws:autoscaling:launchconfiguration
+        OptionName: EC2KeyName
+        Value:
+          Ref: KeyPairName
+      - Namespace: aws:ec2:vpc
+        OptionName: VPCId
+        Value:
+          Ref: VpcId
+      - Namespace: aws:ec2:vpc
+        OptionName: Subnets
+        Value:
+          Ref: SubnetId
+      - Namespace: aws:ec2:vpc
+        OptionName: ELBSubnets
+        Value:
+          Ref: ELBSubnetId
+      - Namespace: aws:autoscaling:asg
+        OptionName: Availability Zones
+        Value: Any
+      - Namespace: aws:autoscaling:asg
+        OptionName: Cooldown
+        Value:
+          Ref: Cooldown
+      - Namespace: aws:autoscaling:asg
+        OptionName: MaxSize
+        Value:
+          Ref: MaxSize
+      - Namespace: aws:autoscaling:asg
+        OptionName: MinSize
+        Value:
+          Ref: MinSize

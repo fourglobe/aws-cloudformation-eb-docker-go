@@ -9,14 +9,14 @@ phases:
        - pip install --upgrade awscli
   pre_build:
     commands:
-       - go test
-       - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -s' -o bin/application main.go
+      - go test
   build:
     commands:
-      # - mkdir deploy
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-s' -o bin/application main.go
+  post_build:
+    commands:
+      - zip -r bin.zip ./bin
       - cp $USE_TEMPLATE_FILE_PATH .
-      # - cp -r ./bin ./deploy
-      # - cd deploy
       - aws cloudformation package
         --template-file template.yaml
         --s3-bucket $S3_BUCKET

@@ -22,7 +22,7 @@ Resources:
     Type: AWS::ElasticBeanstalk::ApplicationVersion 
     Properties: 
       ApplicationName: !Ref 'EBApplication' 
-      SourceBundle: './bin/' 
+      SourceBundle: 'bin.zip' 
   EBConfigurationTemplate: 
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate 
     Properties: 
