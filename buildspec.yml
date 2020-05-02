@@ -16,7 +16,7 @@ phases:
       # - mkdir deploy
       # - cp $USE_TEMPLATE_FILE_PATH ./deploy
       # - cp -r ./bin ./deploy
-      - cd deploy
+      # - cd deploy
       - aws cloudformation package
         --template-file template.yaml
         --s3-bucket $S3_BUCKET
