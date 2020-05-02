@@ -14,7 +14,7 @@ phases:
   build:
     commands:
       # - mkdir deploy
-      - cp $USE_TEMPLATE_FILE_PATH ./deploy
+      - cp $USE_TEMPLATE_FILE_PATH .
       # - cp -r ./bin ./deploy
       # - cd deploy
       - aws cloudformation package
