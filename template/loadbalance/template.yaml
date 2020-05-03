@@ -77,7 +77,7 @@ Resources:
         Value: true
       - Namespace: aws:ec2:vpc
         OptionName: 'ELBScheme'
-        Value: false
+        Value: 'public'
       - Namespace: aws:autoscaling:asg 
         OptionName: Availability Zones 
         Value: Any
