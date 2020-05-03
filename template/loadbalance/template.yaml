@@ -74,7 +74,7 @@ Resources:
         # see: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.managing.vpc.html#environments-cfg-vpc-namespace
       - Namespace: aws:ec2:vpc
         OptionName: 'AssociatePublicIpAddress'
-        Value: true˝
+        Value: true
       - Namespace: aws:ec2:vpc
         OptionName: 'ELBScheme'
         Value: false
